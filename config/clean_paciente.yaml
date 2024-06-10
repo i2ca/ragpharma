@@ -1,0 +1,3 @@
+type: paciente
+pdfs_path: /home/navarro/bulas/bulas_unicas/paciente/
+result_file: datasets/paciente.csv

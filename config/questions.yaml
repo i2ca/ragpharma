@@ -1,0 +1,3 @@
+csv_file: datasets/mini_paciente.csv
+questions_file: results/bula_.jsonl
+index_topic: [0, 2, 5]
