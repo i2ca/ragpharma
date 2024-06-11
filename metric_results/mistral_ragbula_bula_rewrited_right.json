@@ -1,0 +1,8 @@
+{
+    "Model": "mistral",
+    "Rag": true,
+    "Accuracy": 0.814,
+    "F1 Score": 0.8128181256121783,
+    "Recall": 0.8131479998143867,
+    "File": "results/bula_rewrited_right.jsonl"
+}

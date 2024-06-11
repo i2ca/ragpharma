@@ -8,7 +8,7 @@ class Phi():
         
         model_id = "microsoft/Phi-3-small-8k-instruct"
         
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_id,
             torch_dtype=torch.bfloat16,

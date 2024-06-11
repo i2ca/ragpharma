@@ -3,3 +3,6 @@ check_questions.ipynb
 check.ipynb
 process.ipynb
 rag_bula.ipynb
+bula_process/__pycache__/
+bula_process/models/__pycache__/
+bula_process/util/__pycache__/
