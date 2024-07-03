@@ -1,8 +1,8 @@
 {
     "Model": "llama",
     "Rag": false,
-    "Accuracy": 0.4160756501182033,
-    "F1 Score": 0.4165026032899846,
-    "Recall": 0.41717701795341894,
+    "Accuracy": "0.415",
+    "F1 Score": "0.416",
+    "Recall": "0.416",
     "File": "results/bula_right.jsonl"
 }

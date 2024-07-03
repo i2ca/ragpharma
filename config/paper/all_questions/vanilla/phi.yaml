@@ -1,0 +1,5 @@
+path_file: results/bula_all.jsonl
+verbose: False
+rag: False
+model: phi
+experiment_name: phi_vanilla_bula_all

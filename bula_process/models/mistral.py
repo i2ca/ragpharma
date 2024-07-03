@@ -26,8 +26,8 @@ class Mistral():
         if not system_prompt:
             system_prompt = "You are a helpful assistant who only answers the questions asked."
 
-        messages = [
-            {"role": "system", "content": system_prompt},
+        messages = [            
+           # {"role": "assistant", "content": system_prompt},
             {"role": "user", "content": prompt},
         ]
 

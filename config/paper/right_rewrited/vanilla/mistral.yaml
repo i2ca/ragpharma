@@ -1,5 +1,0 @@
-path_file: results/bula_rewrited_right.jsonl
-verbose: False
-rag: False
-model: mistral
-experiment_name: mistral_vanilla_bula_rewrited_right

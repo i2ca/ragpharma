@@ -92,9 +92,10 @@ def multiple_choice_perplexity(model,
 def add_rag_context(question_prompt: str,
                     question: str, 
                     rag: Rag):
-    context = rag.retrieve(question)
+    context, id_rag = rag.retrieve(question)
+
     question_prompt = f"Context: {context} \n {question_prompt}"
-    return question_prompt 
+    return question_prompt, id_rag 
 
 def main(config):
     
@@ -123,7 +124,12 @@ def main(config):
 
     list_answer_model = []
     list_gold_answer = []
-    
+    list_rag_id = []
+    list_gold_id = []
+
+    errou_junto = 0
+    errou_separado = 0
+
     for data in tqdm(list_json):
 
         if config['verbose']:
@@ -132,7 +138,7 @@ def main(config):
         question_prompt, letter_choices = create_multiple_choice_prompt(data['query'], data['choices'])
 
         if config['rag']:
-            question_prompt = add_rag_context(question_prompt, data['query'], rag)
+            question_prompt, id_rag = add_rag_context(question_prompt, data['query'], rag)
         question_prompt = "[INST]Answer the question: [/INST] " + question_prompt + "\nAnswer: "
         # question_prompt = "[INST]Select the right option that answer the question between [][/INST] " + question_prompt + "\nAnswer: "
         # print(model.count_tokens(question_prompt))
@@ -147,20 +153,41 @@ def main(config):
         list_answer_model.append(answer_model)
         list_gold_answer.append(int(data['gold']))
 
+
+        if config['rag']:
+            list_rag_id.append(id_rag)
+            list_gold_id.append(data['id'])
+            if id_rag != data['id']:
+                if answer_model != int(data['gold']):
+                    errou_junto = errou_junto + 1
+                else:
+                    errou_separado = errou_separado + 1
+
     accuracy_score = accuracy(list_gold_answer, list_answer_model)
+    
     f1 = f1_score(list_gold_answer, list_answer_model, average="macro")
     recall = recall_score(list_gold_answer, list_answer_model, average="macro")
     print(f"Accuracy: {accuracy_score}")
     print(f"F1 Score: {f1}")
     print(f"Recall: {recall}")
 
+
+    if config['rag']:
+        print('\n')
+        accuracy_rag = accuracy(list_gold_id, list_rag_id)
+        print(f"Accuracy RAG: {accuracy_rag}")
+        
+        print(f"Errou junto: {errou_junto}")
+        print(f"Errou separado: {errou_separado}")
+
     results = {"Model": config['model'],
                "Rag": config['rag'],
-               "Accuracy": accuracy_score,
-               "F1 Score": f1,
-               "Recall": recall,
+               "Accuracy": '{0:.3g}'.format(accuracy_score),
+               "F1 Score": '{0:.3g}'.format(f1),
+               "Recall": '{0:.3g}'.format(recall),
                "File":config['path_file']}
-    
+    if config['rag']:
+        results['Accuracy RAG'] = '{0:.3g}'.format(accuracy_rag)
     if not os.path.exists('metric_results'):
         os.makedirs('metric_results')
 

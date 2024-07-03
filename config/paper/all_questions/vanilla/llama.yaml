@@ -1,0 +1,5 @@
+path_file: results/bula_all.jsonl
+verbose: False
+rag: False
+model: llama
+experiment_name: llama_vanilla_bula_all

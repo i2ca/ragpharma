@@ -1,0 +1,8 @@
+{
+    "Model": "llama",
+    "Rag": false,
+    "Accuracy": "0.412",
+    "F1 Score": "0.413",
+    "Recall": "0.414",
+    "File": "results/bula_all.jsonl"
+}

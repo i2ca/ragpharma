@@ -1,5 +1,0 @@
-path_file: results/bula_rewrited_right.jsonl
-verbose: False
-rag: True
-model: llama
-experiment_name: llama_ragbula_bula_rewrited_right

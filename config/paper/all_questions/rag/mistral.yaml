@@ -1,0 +1,5 @@
+path_file: results/bula_all.jsonl
+verbose: False
+rag: True
+model: mistral
+experiment_name: mistral_ragbula_bula_all

@@ -1,8 +1,8 @@
 {
     "Model": "phi",
     "Rag": true,
-    "Accuracy": 0.7955082742316785,
-    "F1 Score": 0.7945533623396983,
-    "Recall": 0.7940732455879222,
+    "Accuracy": "0.795",
+    "F1 Score": "0.794",
+    "Recall": "0.794",
     "File": "results/bula_right.jsonl"
 }

@@ -25,8 +25,9 @@ class Rag():
         dot_scores = sentence_transformers.util.dot_score(query_embedding, self.embbeds)[0]
         scores, indices = torch.topk(input=dot_scores,k=1)
         context = self.data[indices]["full_topic"]
+        name_medication_rag = self.data[indices]["id"]
         # print(self.data[indices]["nome"])
         # print(self.data[indices]["full_topic"])
-        return context
+        return context, name_medication_rag
 
 

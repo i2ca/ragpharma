@@ -1,8 +1,0 @@
-{
-    "Model": "llama",
-    "Rag": false,
-    "Accuracy": 0.409,
-    "F1 Score": 0.4093548299953289,
-    "Recall": 0.41058070292935767,
-    "File": "results/bula_rewrited_right.jsonl"
-}
