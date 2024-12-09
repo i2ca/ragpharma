@@ -46,10 +46,10 @@ class Llama3():
         with torch.inference_mode() and torch.no_grad():
             outputs = self.model.generate(
                 input_ids,
-                max_new_tokens=1024,
+                max_new_tokens=300,
                 eos_token_id=terminators,
-                do_sample=True,
-                temperature=0.6,
+                do_sample=False,
+                temperature=0.01,
                 top_p=0.9,
             )
         

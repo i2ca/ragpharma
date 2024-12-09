@@ -1,0 +1,9 @@
+{
+    "Model": "mistral",
+    "Rag": true,
+    "Accuracy": "0.94",
+    "F1 Score": "0.939",
+    "Recall": "0.939",
+    "File": "results/bula_right.jsonl",
+    "Accuracy RAG": "0.897"
+}

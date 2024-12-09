@@ -9,7 +9,7 @@ class Rag():
     def __init__(self) -> None:
         
 
-        df = pd.read_csv('datasets/mini_profissional_embbeds.csv')
+        df = pd.read_csv('datasets/mini_paciente_embbeds.csv')
         df["embedding"] = df["embedding"].apply(lambda x: np.fromstring(x.strip("[]"), sep=" "))
 
         self.embbeds = torch.tensor(np.array(df["embedding"].tolist()), dtype=torch.float32).to('cpu')

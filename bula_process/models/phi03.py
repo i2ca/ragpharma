@@ -1,4 +1,4 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from transformers.utils import logging
 
 import torch
@@ -15,6 +15,9 @@ class Phi():
             device_map="auto",
             trust_remote_code=True, 
         )
+
+        self.tokenizer.pad_token_id = self.tokenizer.eos_token_id
+        self.tokenizer.padding_side = 'left'
    
     def count_tokens(self, prompt):
         tokens = self.tokenizer(prompt)
@@ -24,25 +27,26 @@ class Phi():
 
     def inference(self, prompt, system_prompt = None):
 
-        if not system_prompt:
-            system_prompt = "You are a helpful assistant who only answers the questions asked."
-
-        messages = [
-            {"role": "system", "content": system_prompt},
+        messages = [            
             {"role": "user", "content": prompt},
         ]
 
-        encodeds = self.tokenizer.apply_chat_template(messages, return_tensors="pt")
+        pipe = pipeline(
+            "text-generation",
+            model=self.model,
+            tokenizer=self.tokenizer,
+        )
 
-        model_inputs = encodeds.to('cuda')
-        self.model.to('cuda')
+        generation_args = {
+            "max_new_tokens": 300,
+            "return_full_text": False,
+            "temperature": 0.0,
+            "do_sample": False,
+        }
 
-        generated_ids = self.model.generate(model_inputs, max_new_tokens=1000, do_sample=True)
-        decoded = self.tokenizer.batch_decode(generated_ids)
-        
-        torch.cuda.empty_cache()
-        return decoded[0]
-        
+        output = pipe(messages, **generation_args)
+        return (output[0]['generated_text'])
+
     def perplexity(self, prompt, answer):
         # self.model.to('cuda')
         inputs_length = len(self.tokenizer(prompt, return_tensors="pt").to("cuda")["input_ids"][0])

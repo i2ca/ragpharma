@@ -1,0 +1,6 @@
+path_file: results/bula_teste_qualitative.jsonl
+verbose: True
+rag: True
+model: mistral
+experiment_name: generation_mistral_ragbula_bula_teste_qualitative
+file_generation: results/generated_predictions/

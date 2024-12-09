@@ -1,0 +1,11 @@
+{
+    "Bert Score (F1)": "0.743",
+    "Bert Score (Recall)": "0.794",
+    "Bert Score (Precision)": "0.7",
+    "Accuracy Bert Choice": 0.5585798816568047,
+    "Accuracy BLEU": 0.014201183431952662,
+    "BLEU": "0.00505",
+    "ROUGE-1": 0.09580355894730336,
+    "ROUGE-2": 0.02665961438205364,
+    "ROUGE-L": 0.08501100588313934
+}

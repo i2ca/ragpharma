@@ -7,12 +7,12 @@ class Mistral():
     def __init__(self) -> None:
         
         model_id = "mistralai/Mistral-7B-Instruct-v0.2"
-        
+        logging.set_verbosity_error() 
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_id,
             torch_dtype=torch.bfloat16,
-            device_map="auto",
+            device_map="cuda",
         )
    
     def count_tokens(self, prompt):
@@ -21,13 +21,9 @@ class Mistral():
 
 
 
-    def inference(self, prompt, system_prompt = None):
-
-        if not system_prompt:
-            system_prompt = "You are a helpful assistant who only answers the questions asked."
+    def inference(self, prompt):
 
         messages = [            
-           # {"role": "assistant", "content": system_prompt},
             {"role": "user", "content": prompt},
         ]
 
@@ -36,11 +32,11 @@ class Mistral():
         model_inputs = encodeds.to('cuda')
         self.model.to('cuda')
 
-        generated_ids = self.model.generate(model_inputs, max_new_tokens=1000, do_sample=True)
+        generated_ids = self.model.generate(model_inputs, max_new_tokens=300, do_sample=False)
         decoded = self.tokenizer.batch_decode(generated_ids)
         
         torch.cuda.empty_cache()
-        return decoded[0]
+        return decoded[0].replace(prompt, '').replace('<s>','').replace('[INST]','').replace('[/INST]','').replace('</s>','')
         
     def perplexity(self, prompt, answer):
         # self.model.to('cuda')

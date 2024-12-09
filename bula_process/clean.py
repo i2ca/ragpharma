@@ -5,7 +5,7 @@ import PyPDF2
 
 import pandas as pd
 from tqdm import tqdm
-from models.llama3 import Llama3
+from models import Llama3, Mistral, Phi
 
 from util.error_log import atualizar_log_erro
 from util.topics import list_perguntas, list_topics
@@ -35,7 +35,7 @@ def main(config):
         os.remove('log.txt')
 
     pdfs_path = config['pdfs_path']
-    model = Llama3()
+    model = Phi()
     df = pd.DataFrame()
 
     if config['type'] != 'profissional' and config['type'] != 'paciente':
@@ -96,7 +96,8 @@ def main(config):
                     answer = model.inference(prompt)
                     dict_row[pergunta] = answer.replace('\n', ' ')
                     dict_row['full_topic'] = dict_row['full_topic'] + f" {pergunta} {dict_row[pergunta]}"          
-                
+                    print(pergunta)
+                    print(dict_row[pergunta])                
             df = df._append(dict_row, ignore_index=True)
 
         except Exception as error:

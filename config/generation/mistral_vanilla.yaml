@@ -1,0 +1,4 @@
+path_file: results/bula_right_generation_mistral_rag.jsonl
+verbose: False
+experiment_name: generation_mistral_vanilla_bula_all
+file_generation: results/generated_predictions/
