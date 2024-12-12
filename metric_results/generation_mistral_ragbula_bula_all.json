@@ -1,8 +1,0 @@
-{
-    "Model": "mistral",
-    "Rag": true,
-    "Bert Score (F1)": "0.811",
-    "Bert Score (Recall)": "0.856",
-    "Bert Score (Precision)": "0.773",
-    "File": "results/bula_all.jsonl"
-}

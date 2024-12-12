@@ -1,5 +1,0 @@
-path_file: results/bula_right.jsonl
-verbose: False
-rag: False
-model: llama
-experiment_name: llama_vanilla_bula_right

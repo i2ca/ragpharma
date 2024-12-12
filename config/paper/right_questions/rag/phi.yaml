@@ -1,5 +1,0 @@
-path_file: results/bula_right.jsonl
-verbose: False
-rag: True
-model: phi
-experiment_name: phi_ragbula_bula_right

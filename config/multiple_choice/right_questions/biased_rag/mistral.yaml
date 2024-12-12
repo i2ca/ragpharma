@@ -1,0 +1,6 @@
+path_file: results/bula_right.jsonl
+verbose: False
+rag: True
+biased_rag: True
+model: mistral
+experiment_name: mistral_right

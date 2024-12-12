@@ -1,0 +1,4 @@
+path_file: results/generation/standalone/mistral_right.jsonl
+verbose: False
+file_generation: mistral_right.jsonl
+path_generation: metric_results/generation/standalone

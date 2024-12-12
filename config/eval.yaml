@@ -1,5 +1,0 @@
-path_file: results/teste.jsonl
-verbose: True
-rag: True
-model: llama
-experiment_name: teste

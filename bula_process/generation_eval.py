@@ -6,7 +6,7 @@ import argparse
 import evaluate
 import torch
 from tqdm import tqdm
-from models import Llama3, Rag, Mistral, Gemma, Aya23, Phi
+from models import Llama3, Rag, Mistral,  Phi
 from sklearn.metrics import f1_score, recall_score
 
 def accuracy(ground_truth, predicted):
@@ -215,12 +215,10 @@ def main(config):
                "ROUGE-L": rouge['rougeL'],
             }
 
-    if not os.path.exists('metric_results_generation'):
-        os.makedirs('metric_results_generation')
+    if not os.path.exists(config['path_generation']):
+        os.makedirs(config['path_generation'])
 
-    file_name_with_extension = os.path.basename(config['path_file'])
-
-    with open(f"metric_results_generation/{file_name_with_extension}", "w") as outfile: 
+    with open(f"{config['path_generation']}/{config['file_generation']}", "w") as outfile: 
         json.dump(results, outfile, indent=4)    
 
 
@@ -231,34 +229,15 @@ def parse_arguments():
     parser.add_argument('--config_file', type=str, help='Path to the configuration file.')
     parser.add_argument('--path_file', type=str, help='Override for path_file.')
     parser.add_argument('--verbose', type=bool, help='Override for verbose.')
-    parser.add_argument('--experiment_name', type=str, help='Override for experiment_name.')
+    parser.add_argument('--path_generation', type=str, help='Override for path_generation.')
     parser.add_argument('--file_generation', type=str, help='Override for file_generation.')
     return parser.parse_args()
 
 if __name__ == "__main__":
-    args = parse_arguments()
-
-    # Verifica se o arquivo de configuração foi passado como argumento de linha de comando
-    if args.config_file:
-        config_file = args.config_file
+    if len(sys.argv) < 2:
+        raise Exception("The configuration file is missing.")
     else:
-        if len(sys.argv) < 2:
-            raise Exception("The configuration file is missing.")
-        else:
-            config_file = sys.argv[1]
-    
-    # Carrega as configurações do arquivo YAML
-    with open(config_file, 'r') as file:
-        config = yaml.safe_load(file)
-
-    # Sobrescreve as configurações com os argumentos de linha de comando, se fornecidos
-    if args.path_file:
-        config['path_file'] = args.path_file
-    if args.verbose is not None:  # Verifica explicitamente None para permitir False
-        config['verbose'] = args.verbose
-    if args.experiment_name:
-        config['experiment_name'] = args.experiment_name
-    if args.file_generation:
-        config['file_generation'] = args.file_generation
-
-    main(config)
+        config_file = sys.argv[1]
+        with open(config_file, 'r') as file:
+            config = yaml.safe_load(file)
+            main(config)

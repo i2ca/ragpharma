@@ -6,10 +6,15 @@ import sentence_transformers
 from sentence_transformers import SentenceTransformer
 
 class Rag():
-    def __init__(self) -> None:
+    def __init__(self, biased_test = False) -> None:
         
+        # Definir semente para reprodutibilidade
+        torch.manual_seed(42)
 
-        df = pd.read_csv('datasets/mini_paciente_embbeds.csv')
+        if biased_test:
+            df = pd.read_csv('datasets/mini_profissional_embbeds.csv')
+        else:
+            df = pd.read_csv('datasets/mini_paciente_embbeds.csv')
         df["embedding"] = df["embedding"].apply(lambda x: np.fromstring(x.strip("[]"), sep=" "))
 
         self.embbeds = torch.tensor(np.array(df["embedding"].tolist()), dtype=torch.float32).to('cpu')

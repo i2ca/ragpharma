@@ -1,0 +1,4 @@
+path_file: results/generation/rag/llama_right.jsonl
+verbose: False
+file_generation: llama_right.jsonl
+path_generation: metric_results/generation/rag

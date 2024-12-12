@@ -49,8 +49,8 @@ class Llama3():
                 max_new_tokens=300,
                 eos_token_id=terminators,
                 do_sample=False,
-                temperature=0.01,
-                top_p=0.9,
+                temperature=None,
+                top_p=None,
             )
         
             response = outputs[0][input_ids.shape[-1]:]

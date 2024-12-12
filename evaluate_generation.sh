@@ -1,7 +1,0 @@
-# python3 bula_process/generation_eval.py --config_file config/generation/mistral_vanilla.yaml --path_file results/generation/bula_right_generation_llama_rag.jsonl --file_generation results/generated_predictions/
-# python3 bula_process/generation_eval.py --config_file config/generation/mistral_vanilla.yaml --path_file results/generation/bula_right_generation_llama.jsonl --file_generation results/generated_predictions/
-# python3 bula_process/generation_eval.py --config_file config/generation/mistral_vanilla.yaml --path_file results/generation/bula_right_generation_mistral_rag.jsonl --file_generation results/generated_predictions/
-# python3 bula_process/generation_eval.py --config_file config/generation/mistral_vanilla.yaml --path_file results/generation/bula_right_generation_mistral.jsonl --file_generation results/generated_predictions/
-# python3 bula_process/generation_eval.py --config_file config/generation/mistral_vanilla.yaml --path_file results/generation/bula_right_generation_phi_rag.jsonl --file_generation results/generated_predictions/
-# python3 bula_process/generation_eval.py --config_file config/generation/mistral_vanilla.yaml --path_file results/generation/bula_right_generation_phi.jsonl --file_generation results/generated_predictions/
-python3 bula_process/generation_eval.py --config_file config/generation/mistral_vanilla.yaml --path_file results/generation/bula_right_generation_mistral_biased.jsonl --file_generation results/generated_predictions/

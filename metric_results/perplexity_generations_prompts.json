@@ -1,7 +1,0 @@
-{
-    "Model": "llama",
-    "Accuracy Prompt 1": "0.506",
-    "Accuracy Prompt 2": "0.54",
-    "Accuracy Prompt 3": "0.693",
-    "File": "results/bula_all_generation_mistral.jsonl"
-}

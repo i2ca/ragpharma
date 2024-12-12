@@ -6,7 +6,7 @@ import string
 import evaluate
 import torch
 from tqdm import tqdm
-from models import Llama3, Rag, Mistral, Gemma, Aya23, Phi
+from models import Llama3, Rag, Mistral, Phi
 from sklearn.metrics import f1_score, recall_score
 
 
@@ -36,10 +36,6 @@ def main(config):
         model = Llama3()
     elif config['model'] == 'mistral':
         model = Mistral()
-    elif config['model'] == 'gemma':
-        model = Gemma()
-    elif config['model'] == 'aya23':
-        model = Aya23()
     elif config['model'] == 'phi':
         model = Phi()
     else:
@@ -69,27 +65,40 @@ def main(config):
             print(data['query'])
             print(answer_model)
 
-    with open(config['questions_file'], 'w', encoding='utf-8') as arquivo:
-        for bloco_json in list_json:
-            json.dump(bloco_json, arquivo, ensure_ascii=False)
-            arquivo.write('\n')
+    if config['rag']:
+        path_rag = 'results/generation/rag'
+        if not os.path.exists(path_rag):
+            os.makedirs(path_rag)
+        with open(f"{path_rag}/{config['experiment_name']}.jsonl", "w", encoding='utf-8') as outfile: 
+            for bloco_json in list_json:
+                json.dump(bloco_json, outfile, ensure_ascii=False)
+                outfile.write('\n')
+
+    else:
+        path = 'results/generation/standalone'
+        if not os.path.exists(path):
+            os.makedirs(path)
+        with open(f"{path}/{config['experiment_name']}.jsonl", "w", encoding='utf-8') as outfile: 
+            for bloco_json in list_json:
+                json.dump(bloco_json, outfile, ensure_ascii=False)
+                outfile.write('\n')
 
 if __name__ == "__main__":
-    # if len(sys.argv) < 2:
-    #     raise Exception("The configuration file is missing.")
-    # else:
-    #     config_file = sys.argv[1]
-    #     with open(config_file, 'r') as file:
-    #         config = yaml.safe_load(file)
-    #         main(config)
+    if len(sys.argv) < 2:
+        raise Exception("The configuration file is missing.")
+    else:
+        config_file = sys.argv[1]
+        with open(config_file, 'r') as file:
+            config = yaml.safe_load(file)
+            main(config)
 
-    config = {
-        "model":"llama",
-        "rag":True,
-        "questions_file":"results/generation/bula_right_generation_llama_biased.jsonl",
-        "path_file":"results/bula_right.jsonl",
-        "verbose":False
-        }
+    # config = {
+    #     "model":"llama",
+    #     "rag":True,
+    #     "questions_file":"results/generation/bula_right_generation_llama_biased.jsonl",
+    #     "path_file":"results/bula_right.jsonl",
+    #     "verbose":False
+    #     }
 
         
-    main(config)
+    # main(config)

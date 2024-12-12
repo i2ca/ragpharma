@@ -1,9 +1,0 @@
-{
-    "Model": "phi",
-    "Rag": true,
-    "Accuracy": "0.78",
-    "F1 Score": "0.779",
-    "Recall": "0.779",
-    "File": "results/bula_all.jsonl",
-    "Accuracy RAG": "0.85"
-}

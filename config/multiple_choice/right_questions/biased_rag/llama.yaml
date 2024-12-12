@@ -1,0 +1,6 @@
+path_file: results/bula_right.jsonl
+verbose: False
+rag: True
+biased_rag: True
+model: llama
+experiment_name: llama_right

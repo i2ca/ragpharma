@@ -1,0 +1,4 @@
+path_file: results/generation/standalone/phi_right.jsonl
+verbose: False
+file_generation: phi_right.jsonl
+path_generation: metric_results/generation/standalone

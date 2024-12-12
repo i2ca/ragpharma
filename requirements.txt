@@ -7,4 +7,15 @@ scikit_learn==1.4.0
 sentence_transformers==2.7.0
 torch==2.3.0
 tqdm==4.66.1
-transformers==4.40.2
+transformers==4.42.0
+accelerate==1.2.0 
+psutil==6.1.0
+evaluate==0.4.3
+tiktoken==0.8.0
+einops==0.8.0
+pytest==8.3.4
+flash-attn==2.7.2.post1
+bert_score==0.3.13 
+absl-py==2.1.0
+nltk==3.9.1
+rouge_score==0.1.2

@@ -5,7 +5,7 @@ import yaml
 import string
 
 from tqdm import tqdm
-from models import Llama3, Rag, Mistral, Gemma, Aya23, Phi
+from models import Llama3, Rag, Mistral, Phi
 from sklearn.metrics import f1_score, recall_score
 
 
@@ -104,10 +104,6 @@ def main(config):
         model = Llama3()
     elif config['model'] == 'mistral':
         model = Mistral()
-    elif config['model'] == 'gemma':
-        model = Gemma()
-    elif config['model'] == 'aya23':
-        model = Aya23()
     elif config['model'] == 'phi':
         model = Phi()
     else:
@@ -116,7 +112,7 @@ def main(config):
     list_json = []
     
     if config['rag']:
-        rag = Rag()
+        rag = Rag(config['biased_rag'])
 
     with open(config['path_file'], 'r') as file:
         for line in file:
@@ -186,14 +182,27 @@ def main(config):
                "F1 Score": '{0:.3g}'.format(f1),
                "Recall": '{0:.3g}'.format(recall),
                "File":config['path_file']}
+    
+
+
     if config['rag']:
         results['Accuracy RAG'] = '{0:.3g}'.format(accuracy_rag)
-    if not os.path.exists('metric_results'):
-        os.makedirs('metric_results')
+        if config['biased_rag']:
+            path_rag = 'metric_results/multiple_choice/biased_rag'
+        else:
+            path_rag = 'metric_results/multiple_choice/rag'
+        if not os.path.exists(path_rag):
+            os.makedirs(path_rag)
 
-    with open(f"metric_results/{config['experiment_name']}.json", "w") as outfile: 
-        json.dump(results, outfile, indent=4)    
+        with open(f"{path_rag}/{config['experiment_name']}.json", "w") as outfile: 
+            json.dump(results, outfile, indent=4)    
+    else:
+        path = 'metric_results/multiple_choice/standalone'
+        if not os.path.exists(path):
+            os.makedirs(path)
 
+        with open(f"{path}/{config['experiment_name']}.json", "w") as outfile: 
+            json.dump(results, outfile, indent=4)       
 
 
 if __name__ == "__main__":
