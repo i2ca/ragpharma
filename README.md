@@ -1,4 +1,4 @@
-# Ragbula 💊📃
+# RagPharma 💊📃
 
 ## Getting Started
 
@@ -29,8 +29,8 @@ python3 bula_process/multiple_choice.py config/paper/right_questions/rag/mistral
 ```
 ## License
 
-Ragbula is distributed under the [MIT License](LICENSE), which means you can use it for your projects, modify it, and even redistribute it, all subject to the terms of the license.
+RagPharma is distributed under the [MIT License](LICENSE), which means you can use it for your projects, modify it, and even redistribute it, all subject to the terms of the license.
 
 ---
 
-*Please note that Ragbula is for informational purposes only and should not be considered a substitute for professional medical advice. Always consult with a healthcare professional for any medical concerns or decisions.*
+*Please note that RagPharma is for informational purposes only and should not be considered a substitute for professional medical advice. Always consult with a healthcare professional for any medical concerns or decisions.*
