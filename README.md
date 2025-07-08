@@ -33,4 +33,4 @@ RagPharma is distributed under the [MIT License](LICENSE), which means you can u
 
 ---
 
-*Please note that RagPharma is for informational purposes only and should not be considered a substitute for professional medical advice. Always consult with a healthcare professional for any medical concerns or decisions.*
+*Please note that RagPharma is for research purposes only and should not be considered a substitute for professional medical advice. Always consult with a healthcare professional for any medical concerns or decisions.*
